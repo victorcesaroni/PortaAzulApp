@@ -84,15 +84,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/editText3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Token"
-                android:selectAllOnFocus="true"
-                android:singleLine="true" />
-
             <Button
                 android:id="@+id/email_sign_in_button"
                 android:layout_width="match_parent"
