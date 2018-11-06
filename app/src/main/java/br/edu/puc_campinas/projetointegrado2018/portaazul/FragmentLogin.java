@@ -108,7 +108,7 @@ public class FragmentLogin extends Fragment {
         String user = mUserText.getText().toString();
         String password = mPasswordText.getText().toString();
         String door = "ESP32-PORTA1";
-        String api = "http://192.168.1.200/2018projetointegradob/api/autoriza.php?";
+        String api = "http://192.168.43.159/pib/api/autoriza.php?";
         String param = "usuario&name="+user + "&password=" + password + "&porta=" + door;
 
         new GetUrlContentTask().execute(api + param);

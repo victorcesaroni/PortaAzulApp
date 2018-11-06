@@ -123,7 +123,7 @@ public class FragmentScanner extends Fragment {
                 (BluetoothManager)getActivity().getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
 
-        if (mBluetoothAdapter == null) {
+        /*if (mBluetoothAdapter == null) {
             Toast.makeText(getActivity(), "BLE Not Supported", Toast.LENGTH_SHORT).show();
             return view;
         } else {
@@ -131,7 +131,7 @@ public class FragmentScanner extends Fragment {
                 Toast.makeText(getActivity(), "Bluetooth not enabled", Toast.LENGTH_SHORT).show();
                 return view;
             }
-        }
+        }*/
 
         mLEScanner = mBluetoothAdapter.getBluetoothLeScanner();
         mGatt = null;
@@ -203,7 +203,10 @@ public class FragmentScanner extends Fragment {
     private void updateDeviceListView() {
         ArrayList<String> devicesName = new ArrayList<>();
         for (BluetoothDevice dev : devicesFound) {
-            devicesName.add(dev.getName());
+            try {
+                devicesName.add(dev.getName());
+            } catch (Exception ex)
+            {}
         }
 
         ArrayAdapter<String> adp = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, devicesName);
@@ -212,7 +215,7 @@ public class FragmentScanner extends Fragment {
     }
 
     private void scanLeDevice(final boolean enable) {
-        if (mLEScanner != null && enable) {
+        if (enable) {
             /*// para de escanear depois de SCAN_PERIOD
             mHandler.postDelayed(new Runnable() {
                 @Override
@@ -224,10 +227,9 @@ public class FragmentScanner extends Fragment {
             devicesFound.clear();
             mLEScanner.startScan(filters, settings, mScanCallback);
         } else {
-            if (mLEScanner != null) {
-                mLEScanner.stopScan(mScanCallback);
-                updateDeviceListView();
-            }
+            mLEScanner.stopScan(mScanCallback);
+            updateDeviceListView();
+
             mDevicesScan.setChecked(false);
         }
     }
@@ -251,9 +253,15 @@ public class FragmentScanner extends Fragment {
     private ScanCallback mScanCallback = new ScanCallback() {
         void onDeviceFound(ScanResult scanResult) {
             BluetoothDevice device = scanResult.getDevice();
-            Log.i("onDeviceFound", "Device found: " + device.getName() + "  " + device.getAddress() + " rssi:" + scanResult.getRssi());
-            devicesFound.add(device);
-            updateDeviceListView();
+            if (device != null) {
+                try {
+                    if (device.getName() != null) {
+                        Log.i("onDeviceFound", "Device found: " + device.getName() + "  " + device.getAddress() + " rssi:" + scanResult.getRssi());
+                        devicesFound.add(device);
+                        updateDeviceListView();
+                    }
+                }catch (Exception ex){}
+            }
         }
 
         @Override
