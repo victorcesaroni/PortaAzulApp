@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Login" />
+        <item
+            android:id="@+id/nav_scanner"
+            android:icon="@android:drawable/stat_sys_data_bluetooth"
+            android:title="Scanner" />
+    </group>
+
+    <item android:title="Admin">
+        <menu>
+            <item
+                android:id="@+id/nav_cadastro_porta"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Cadastrar porta" />
+            <item
+                android:id="@+id/nav_cadastro_usuario"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Cadastrar usuario" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,30 +1,14 @@
 package br.edu.puc_campinas.projetointegrado2018.portaazul;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.content.Intent;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -60,9 +44,9 @@ import java.util.UUID;
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-public class LoginActivity extends AppCompatActivity {
+public class PortScanActivity extends AppCompatActivity {
 
-    private LoginActivity context = null;
+    private PortScanActivity context = null;
 
     private static final int REQUEST_ACCESS_COARSE_LOCATION = 1;
     private static final int REQUEST_ACCESS_FINE_LOCATION = 2;
@@ -96,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
         checkBluetoothPermissions();
 
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_portscan);
 
         mEmailView = (AutoCompleteTextView)findViewById(R.id.user);
         mLoginFormView = findViewById(R.id.login_form);
